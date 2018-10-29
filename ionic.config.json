@@ -1,0 +1,8 @@
+{
+  "name": "realLifeGame",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "pro_id": "bb29434c"
+}
