@@ -27,6 +27,11 @@
                 "output": "assets"
               },
               {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
                 "glob": "**/*.svg",
                 "input": "node_modules/@ionic/angular/dist/ionic/svg",
                 "output": "./svg"

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
-import { HomePage } from '../home/home.page';
-import { AboutPage } from '../about/about.page';
+import { QuizPage } from '../quiz/quiz.page';
+import { UrimTumim } from '../urimTumim/urimTumim.page';
 import { ContactPage } from '../contact/contact.page';
 
 const routes: Routes = [
@@ -13,18 +13,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/tabs/(home:home)',
+        redirectTo: '/tabs/(quiz:quiz)',
         pathMatch: 'full',
       },
       {
-        path: 'home',
-        outlet: 'home',
-        component: HomePage
+        path: 'quiz',
+        outlet: 'quiz',
+        component: QuizPage
       },
       {
-        path: 'about',
-        outlet: 'about',
-        component: AboutPage
+        path: 'urimTumim',
+        outlet: 'urimTumim',
+        component: UrimTumim
       },
       {
         path: 'contact',
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/(home:home)',
+    redirectTo: '/tabs/(quiz:quiz)',
     pathMatch: 'full'
   }
 ];
