@@ -3,12 +3,13 @@ import {QuestionsService} from '../questions.service';
 import { AlertController, Platform } from '@ionic/angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy/ngx';
+import { SqliteService } from '../shared/sqlite.service';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: 'quiz.page.html',
   styleUrls: ['quiz.page.scss'],
-  providers: [QuestionsService, SqliteDbCopy, SQLite],
+  providers: [QuestionsService, SqliteDbCopy, SQLite,SqliteService],
 })
 export class QuizPage implements OnInit{
 
@@ -19,11 +20,12 @@ export class QuizPage implements OnInit{
   private database = 'dblite';
 
   constructor(public plt: Platform, private sqlite: SQLite, private sqliteDbCopy: SqliteDbCopy,
-     private questionsService: QuestionsService, public alertController: AlertController) {
+     private questionsService: QuestionsService, public alertController: AlertController,
+      private sqliteService:SqliteService) {
 
       this.plt.ready().then((readySource) => {
-        alert('Platform ready from');
-            this.initializeDatabase();
+        console.log('Platform ready from');
+        sqliteService.initializeDatabase();
         })
         .catch((error: any) => this.question = JSON.stringify(error));
   }
@@ -106,7 +108,8 @@ export class QuizPage implements OnInit{
     return this.sqliteDbCopy.remove(  'dblite' , 0);
   }
   async getRamdomQuestion(index: number): Promise<any> {
-    const rs = await this.db.executeSql(`select * from quiz where rowid = ${index} limit 1`, []);
+    const query = `select * from quiz where rowid = ${index} limit 1` ;
+    const rs = await this.sqliteService.query(query);
     this.question = rs.rows.item(0).question;
     this.answer = rs.rows.item(0).answer;
   }
