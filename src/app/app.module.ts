@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy/ngx';
+import { SqliteService } from './shared/sqlite.service';
+ 
 
 
 
@@ -28,6 +30,7 @@ import { SqliteDbCopy } from '@ionic-native/sqlite-db-copy/ngx';
     SplashScreen,
     SQLite,
     SqliteDbCopy,
+    SqliteService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
